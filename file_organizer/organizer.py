@@ -2,9 +2,7 @@
 
 import os
 
-FILE_TYPE = {
-    "text_files": [""]
-}
+from .datashelf import FileExtensions
 
 
 class Organizer:
@@ -20,3 +18,11 @@ class Organizer:
         :return: a list of folders with the files in it
         :rtype: None
         """
+        directory = input("Please type the directory you want to sort: ")
+        file_in_dir = os.listdir(directory)
+        for file in file_in_dir:
+            file_ext = os.path.splitext(file)[-1]
+            if file_ext in list(FileExtensions().file_types().keys()):
+                folder = FileExtensions().file_types()[file_ext]
+                # TODO: Implement logic to check if the folder exist
+                # TODO: Implement logic to move files
