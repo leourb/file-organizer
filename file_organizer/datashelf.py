@@ -32,7 +32,6 @@ class FileExtensions:
     def __init__(self):
         self.__collections = self.__get_collections()
         self.__file_extensions = self.__get_file_extensions()
-        print(self.__file_extensions)
 
     def __get_collections(self):
         """
@@ -66,3 +65,11 @@ class FileExtensions:
                 if row.find("a"):
                     results[row.find("a").get_text()] = category
         return results
+
+    def file_types(self):
+        """
+        Return the file types scraped from FileInfo.com
+        :return: a dictionary with all the data types and categories
+        :rtype: dict
+        """
+        return self.__file_extensions
