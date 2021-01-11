@@ -1,5 +1,6 @@
 """Scrape data from FileInfo.com to get file extensions"""
 
+import platform
 import requests
 
 from bs4 import BeautifulSoup
@@ -16,6 +17,7 @@ class DataShelf:
     def __init__(self):
         """Initialize the class"""
         self.__urls = DataShelf.URLS
+        self.__os = platform.system()
 
     def urls(self):
         """
@@ -52,7 +54,7 @@ class FileExtensions:
     def __get_file_extensions(self):
         """
         Build a data structure with the file types stored inside each category
-        :return: a dictionary with the pair ["category": "file_type"]
+        :return: a dictionary with the pair ["file_type": "category"]
         :rtype: dict
         """
         results = dict()
@@ -63,7 +65,7 @@ class FileExtensions:
             rows = parsed_page.findAll("td")
             for row in rows:
                 if row.find("a"):
-                    results[row.find("a").get_text()] = category
+                    results[row.find("a").get_text().lower()] = category
         return results
 
     def file_types(self):
