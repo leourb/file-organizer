@@ -8,7 +8,8 @@ setuptools.setup(
     version="1.0.0",
     author="Leonardo Urbano",
     author_email="leonardo.urbano87@libero.it",
-    packages=setuptools.find_packages(),
+    packages=['file_organizer'],
+    install_requires=['requests>=2.25.1', 'beautifulsoup4>=4.9.3'],
     description="Organizes the files in a folder following the same structure of FileInfo.com",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -19,5 +20,10 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6'
+    python_requires='>=3.6',
+    entry_points={
+        'console_scripts': [
+            'organize=file_organizer.main:organize',
+        ]
+    }
 )
